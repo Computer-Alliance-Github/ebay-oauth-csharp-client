@@ -23,13 +23,14 @@ using RestSharp;
 using System.Net;
 using Newtonsoft.Json;
 using System.Text;
-using log4net;
+using Serilog;
 
 namespace eBay.ApiClient.Auth.OAuth2
 {
     public class OAuth2Api
     {
-        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        //private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private readonly ILogger _logger = Log.ForContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private static AppTokenCache appTokenCache = new AppTokenCache();
 
         private class AppTokenCache
@@ -88,7 +89,8 @@ namespace eBay.ApiClient.Auth.OAuth2
                 oAuthResponse = appTokenCache.GetValue(environment);
                 if (oAuthResponse != null && oAuthResponse.AccessToken != null && oAuthResponse.AccessToken.Token != null)
                 {
-                    log.Info("Returning token from cache for " + environment.ConfigIdentifier());
+                    //log.Info("Returning token from cache for " + environment.ConfigIdentifier());
+                    _logger.Information("Returning token from cache for " + environment.ConfigIdentifier());
                     return oAuthResponse;
                 }
             }
@@ -151,7 +153,7 @@ namespace eBay.ApiClient.Auth.OAuth2
 
             sb.Append(OAuth2Util.CreateRequestPayload(queryParams));
 
-            log.Debug("Authorization url " + sb);
+            _logger.Debug("Authorization url " + sb);
             return sb.ToString();
         }
 
@@ -280,7 +282,7 @@ namespace eBay.ApiClient.Auth.OAuth2
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 oAuthResponse.ErrorMessage = response.Content;
-                log.Error("Error in fetching the token. Error:" + oAuthResponse.ErrorMessage);
+                _logger.Error("Error in fetching the token. Error:" + oAuthResponse.ErrorMessage);
             }
             else
             {
@@ -306,7 +308,7 @@ namespace eBay.ApiClient.Auth.OAuth2
                     oAuthResponse.RefreshToken = refreshToken;
                 }
             }
-            log.Info("Fetched the token successfully from API");
+            _logger.Information("Fetched the token successfully from API");
             return oAuthResponse;
         }
     }

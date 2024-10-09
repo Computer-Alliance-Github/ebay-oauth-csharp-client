@@ -21,14 +21,15 @@ using System.Collections.Generic;
 using System.IO;
 using eBay.ApiClient.Auth.OAuth2.Model;
 using YamlDotNet.RepresentationModel;
-using log4net;
+using Serilog;
 using System.Collections.Concurrent;
 
 namespace eBay.ApiClient.Auth.OAuth2
 {
     public static class CredentialUtil {
 
-        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        //private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILogger _logger = Log.ForContext(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         static readonly ConcurrentDictionary<String, Credentials> envCredentials = new ConcurrentDictionary<String, Credentials>();
 
         public class Credentials {
@@ -94,7 +95,8 @@ namespace eBay.ApiClient.Auth.OAuth2
                 }
 
             }
-            log.Info("Loaded configuration for eBay oAuth Token");
+            //log.Info("Loaded configuration for eBay oAuth Token");
+            _logger.Information("Loaded configuration for eBay oAuth Token");
 
         }
 
