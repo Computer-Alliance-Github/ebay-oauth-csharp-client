@@ -37,7 +37,7 @@ namespace eBay.ApiClient.Auth.OAuth2
 
             public Credentials(YamlMappingNode keyValuePairs)
             {
-
+                _logger.Information("Starting Credentials");
                 foreach (var keyValuePair in keyValuePairs.Children)
                 {
                     CredentialType credentialType = CredentialType.LookupByConfigIdentifier(keyValuePair.Key.ToString());
@@ -60,6 +60,7 @@ namespace eBay.ApiClient.Auth.OAuth2
         public static void Load(String yamlFile)
         {
             //Stream the input file
+            _logger.Information("yamlFile: {yamlFile}", yamlFile);
             StreamReader streamReader = new StreamReader(yamlFile);
             Load(streamReader);
         }
@@ -69,7 +70,7 @@ namespace eBay.ApiClient.Auth.OAuth2
          */
         public static void Load(StreamReader streamReader)
         {
-           
+           _logger.Information("Starting Load StreamReader");
             //Load the stream
             YamlStream yaml = new YamlStream();
             yaml.Load(streamReader);

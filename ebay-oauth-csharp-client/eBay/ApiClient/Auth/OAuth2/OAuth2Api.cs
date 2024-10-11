@@ -78,7 +78,7 @@ namespace eBay.ApiClient.Auth.OAuth2
          */
         public OAuthResponse GetApplicationToken(OAuthEnvironment environment, IList<String> scopes)
         {
-
+            _logger.Information("[ebay-oauth] GetApplicationToken Starting");
             //Validate request
             ValidateEnvironmentAndScopes(environment, scopes);
             OAuthResponse oAuthResponse = null;

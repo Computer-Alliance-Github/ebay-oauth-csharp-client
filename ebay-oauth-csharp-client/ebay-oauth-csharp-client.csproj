@@ -1,15 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>eBay.ApiClient.Auth.oAuth2</RootNamespace>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="eBay\ApiClient\Auth\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Serilog" Version="4.0.1" />
-    <PackageReference Include="YamlDotNet" Version="13.1.1" />
-    <PackageReference Include="RestSharp" Version="110.2.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
+    <PackageReference Include="YamlDotNet" Version="16.1.3" />
+    <PackageReference Include="RestSharp" Version="112.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 </Project>

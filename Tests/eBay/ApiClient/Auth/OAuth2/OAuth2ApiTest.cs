@@ -91,7 +91,7 @@ namespace eBay.ApiClient.Auth.OAuth2
 
         [Fact]
         public void GenerateUserAuthorizationUrl_Success() {
-            String yamlFile = @"../../../ebay-config-sample.yaml";
+            String yamlFile = @"ebay-config-sample.yaml";
             StreamReader streamReader = new StreamReader(yamlFile);
             CredentialUtil.Load(streamReader);
 
@@ -169,7 +169,7 @@ namespace eBay.ApiClient.Auth.OAuth2
         }
 
         private void LoadCredentials() {
-            String path = @"../../../ebay-config-sample.yaml";
+            String path = @"ebay-config-sample.yaml";
             CredentialUtil.Load(path);
         }
 
@@ -216,7 +216,7 @@ namespace eBay.ApiClient.Auth.OAuth2
         {
             UserCredential userCredential = new UserCredential();
             YamlStream yaml = new YamlStream();
-            StreamReader streamReader = new StreamReader("../../../test-config-sample.yaml");
+            StreamReader streamReader = new StreamReader("test-config-sample.yaml");
             yaml.Load(streamReader);
             var rootNode = (YamlMappingNode)yaml.Documents[0].RootNode;
             foreach (var firstLevelNode in rootNode.Children)

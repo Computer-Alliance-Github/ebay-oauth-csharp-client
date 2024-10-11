@@ -49,7 +49,7 @@ namespace eBay.ApiClient.Auth.OAuth2
 
         [Fact]
         public void CreateAuthorizationHeader_Success() {
-            String path = @"../../../ebay-config-sample.yaml";
+            String path = @"ebay-config-sample.yaml";
             CredentialUtil.Load(path);
             CredentialUtil.Credentials credentials = CredentialUtil.GetCredentials(OAuthEnvironment.PRODUCTION);
             String authorizationHeader = OAuth2Util.CreateAuthorizationHeader(credentials);
